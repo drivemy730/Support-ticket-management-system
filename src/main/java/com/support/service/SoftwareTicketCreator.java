@@ -13,11 +13,14 @@ public class SoftwareTicketCreator implements SoftwareTicketService
         this.softwareTicketStorage = softwareTicketStorage;
     }
 
+    public SoftwareTicketCreator() {
+    }
+
     // "SOFTWARE TICKET DATA BASE"
     Map<Integer, SoftwareTicket> softwareTicketStorage = new HashMap<>();
 
 
-
+    @Override
     public SoftwareTicket createSoftwareBugTicket(SoftwareTicket ticket)
     {
         int nextId = softwareTicketStorage.size() + 1;
@@ -28,13 +31,16 @@ public class SoftwareTicketCreator implements SoftwareTicketService
         return ticket;
     }
 
-   public SoftwareTicket getSoftwareTicketById(Integer id)
+    @Override
+    public SoftwareTicket getSoftwareTicketById(Integer id)
     {
         return softwareTicketStorage.get(id);
 
     };
 
-    public List<SoftwareTicket> getHighPrioritySoftwareTickets() {
+    @Override
+    public List<SoftwareTicket> getHighPrioritySoftwareTickets()
+    {
         List<SoftwareTicket> highPriorityTickets = new ArrayList<>();
 
         for (SoftwareTicket ticket : softwareTicketStorage.values())

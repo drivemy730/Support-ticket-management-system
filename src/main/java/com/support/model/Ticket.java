@@ -13,6 +13,9 @@ public abstract class Ticket {
         this.priority = priority;
     }
 
+    public Ticket() {
+    }
+
     // Getters y Setters...
 
 

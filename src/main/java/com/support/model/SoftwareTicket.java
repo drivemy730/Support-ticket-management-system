@@ -8,6 +8,10 @@ public class SoftwareTicket extends Ticket {
         super(id, description, priority);
         this.operatingSystem = operatingSystem;
     }
+
+    public SoftwareTicket() {
+    }
+
     // Getters y Setters...
 
 

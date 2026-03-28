@@ -9,6 +9,10 @@ public class HardwareTicket extends Ticket {
         super(id, description, priority);
         this.serialNumber = serialNumber;
     }
+
+    public HardwareTicket() {
+    }
+
     // Getters y Setters...
 
 
