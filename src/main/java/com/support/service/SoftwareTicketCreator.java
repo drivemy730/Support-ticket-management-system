@@ -9,31 +9,37 @@ import java.util.*;
 
 public class SoftwareTicketCreator implements SoftwareTicketService
 {
-    public SoftwareTicketCreator(Map<Integer, SoftwareTicket> softwareTicketStorage) {
-        this.softwareTicketStorage = softwareTicketStorage;
-    }
-
-    public SoftwareTicketCreator() {
-    }
 
     // "SOFTWARE TICKET DATA BASE"
-    Map<Integer, SoftwareTicket> softwareTicketStorage = new HashMap<>();
+    private Map<Integer, SoftwareTicket> softwareTicketStorage = new HashMap<>();
+    private int currentId;
 
 
     @Override
-    public SoftwareTicket createSoftwareBugTicket(SoftwareTicket ticket)
+    public SoftwareTicket createSoftwareBugTicket(String desc, String os, Priority priority)
     {
-        int nextId = softwareTicketStorage.size() + 1;
-        ticket.setId(nextId);
+        SoftwareTicket ticket = new SoftwareTicket();
+        currentId++;
+        ticket.setId(currentId);
+        ticket.setDescription(desc);
+        ticket.setOperatingSystem(os);
+        ticket.setPriority(priority);
 
-        softwareTicketStorage.put(nextId, ticket);
-
+        softwareTicketStorage.put(currentId, ticket);
         return ticket;
     }
 
+
+
     @Override
-    public SoftwareTicket getSoftwareTicketById(Integer id)
+    public SoftwareTicket getSoftwareTicketById(Integer id) throws TicketNotFoundException
     {
+        SoftwareTicket ticket = softwareTicketStorage.get(id);
+        if (ticket == null)
+        {
+            throw new TicketNotFoundException("sofware ticket not found with id: " + id);
+        }
+
         return softwareTicketStorage.get(id);
 
     };
@@ -52,6 +58,15 @@ public class SoftwareTicketCreator implements SoftwareTicketService
         }
 
         return highPriorityTickets;
+    }
+
+    //constructors
+
+    public SoftwareTicketCreator(Map<Integer, SoftwareTicket> softwareTicketStorage) {
+        this.softwareTicketStorage = softwareTicketStorage;
+    }
+
+    public SoftwareTicketCreator() {
     }
 
 

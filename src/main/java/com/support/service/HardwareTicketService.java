@@ -2,7 +2,6 @@ package com.support.service;
 
 import com.support.exception.TicketNotFoundException;
 import com.support.model.HardwareTicket;
-import com.support.model.SoftwareTicket;
 
 import java.util.List;
 

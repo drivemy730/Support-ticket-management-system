@@ -33,13 +33,16 @@ public class HardwareTicketCreator implements HardwareTicketService
 
 
     @Override
-    public HardwareTicket getHardwareTicketById(Integer id) //throws TicketNotFoundException
-    {
+    public HardwareTicket getHardwareTicketById(Integer id) throws TicketNotFoundException {
+        HardwareTicket ticket = hardwareTicketStorage.get(id);
 
-        return hardwareTicketStorage.get(id);
+        if (ticket == null)
+        {
+            throw new TicketNotFoundException("Ticket not found for ID " + id);
+        }
 
-    };
-
+        return ticket;
+    }
 
 
     @Override
